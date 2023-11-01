@@ -1,0 +1,30 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2.5rem;
+  text-align: center;
+  background-color: white;
+  border-radius: 20px;
+}
+
+.icon-wrapper {
+  border: 1px solid black;
+  padding: 1em;
+  border-radius: 50%;
+  margin-right: 0.5em;
+}
+
+.label-input {
+  text-align: start;
+}
+
+.btn {
+  width: 100%;
+}
+
+@media only screen and (max-width: 600px) {
+  #root {
+    width: 380px;
+  }
+}
+
