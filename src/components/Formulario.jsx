@@ -25,7 +25,7 @@ const Formulario = ({ error, setError }) => {
   const inputValues = Object.values(data);
   const { email, password, confirmPassword } = data;
   const emailPattern =
-    /^[\w._%+-Á-ÿ\u00d1\u00f1]+@[\w-Á-ÿ\u00d1\u00f1]+\.[A-Z]{2,4}$/gim;
+    /^[\w._%+-Á-ÿ\u00d1\u00f1]+@[\w-Á-ÿ\u00d1\u00f1]+\.[A-Z]{2,4}$/i;
   const passwordPattern =
     /^(?=.*[a-z]{2})(?=.*[A-Z])(?=.*\d{1})(?=.*[!-/:-@]).{6,8}$/;
   function handleValidation(e) {
@@ -36,7 +36,8 @@ const Formulario = ({ error, setError }) => {
       areInputValuesFilledIn ||
       !(
         emailPattern.test(email) &&
-        passwordPattern.test(password) === passwordPattern.test(confirmPassword)
+        passwordPattern.test(password) &&
+        password === confirmPassword
       )
     ) {
       setError(true);
