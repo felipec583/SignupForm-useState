@@ -4,7 +4,7 @@ import Form from "react-bootstrap/Form";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 
-const Formulario = ({ error, setError }) => {
+const Formulario = ({ setError }) => {
   const [isInputFocused, setIsInputFocused] = useState({
     emailFocus: false,
     passwordFocus: false,
@@ -25,23 +25,22 @@ const Formulario = ({ error, setError }) => {
   const inputValues = Object.values(data);
   const { email, password, confirmPassword } = data;
   const emailPattern =
-    /^[\w._%+-Á-ÿ\u00d1\u00f1]+@[\w-Á-ÿ\u00d1\u00f1]+\.[A-Z]{2,4}$/i;
+    /^[a-zA-Z0-9._%+-ñÑáéíóúÁÉÍÓÚ]+@[a-zA-Z0-9.-ñÑáéíóúÁÉÍÓÚ]+\.[a-zA-Z]{2,4}$/;
   const passwordPattern =
     /^(?=.*[a-z]{2})(?=.*[A-Z])(?=.*\d{1})(?=.*[!-/:-@]).{6,8}$/;
+  const passwordValidation = passwordPattern.test(password);
+  const passwordEqualityValidation = password === confirmPassword;
+  const emailValidation = emailPattern.test(email);
   function handleValidation(e) {
     e.preventDefault();
-
     const areInputValuesFilledIn = inputValues.some((item) => item === "");
     if (
       areInputValuesFilledIn ||
-      !(
-        emailPattern.test(email) &&
-        passwordPattern.test(password) &&
-        password === confirmPassword
-      )
+      !emailValidation ||
+      !passwordValidation ||
+      !passwordEqualityValidation
     ) {
       setError(true);
-
       return;
     }
     setError(false);
@@ -75,6 +74,7 @@ const Formulario = ({ error, setError }) => {
             setData((data) => ({ ...data, name: target.value.trimStart() }))
           }
           value={data.name}
+          required
         />
       </Form.Group>
       <Form.Group className="mb-3 my-3" controlId="formBasicEmail">
@@ -86,6 +86,7 @@ const Formulario = ({ error, setError }) => {
             setData((data) => ({ ...data, email: target.value }))
           }
           value={data.email}
+          required
         />
         {isInputFocused.emailFocus && !emailPattern.test(email) && (
           <p className="bg-danger bg-gradient my-2 rounded text-white fs-5">
@@ -103,6 +104,7 @@ const Formulario = ({ error, setError }) => {
             setData((data) => ({ ...data, password: target.value }))
           }
           value={data.password}
+          required
         />
         {isInputFocused.passwordFocus &&
           (!passwordPattern.test(password) ? (
@@ -132,6 +134,7 @@ const Formulario = ({ error, setError }) => {
             setData((data) => ({ ...data, confirmPassword: target.value }))
           }
           value={data.confirmPassword}
+          required
         />
         <Form.Text className="text-muted">
           {password !== confirmPassword && (
