@@ -1,5 +1,6 @@
 import React from "react";
 
+/* area de alert */
 const Alert = ({ error }) => {
   return error === "" ? null : (
     <div
@@ -12,5 +13,6 @@ const Alert = ({ error }) => {
     </div>
   );
 };
+/* cierre area de alert */
 
 export default Alert;
