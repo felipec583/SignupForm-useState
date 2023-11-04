@@ -11,6 +11,7 @@ import {
 
 const SocialButton = ({ github, linkedin, facebook }) => {
   return (
+    /* comentario hecho por Alfredo (podrias poner los icones dentro de una <a></a> para que funcione con links asi queda mas chido :) ej <a  href="https://www.facebook.com">{facebook &&  (<BsFacebook icon={BsFacebook}  className='icono' color='black' size={60}/>)}</a>)*/
     <Container>
       <Row className="justify-content-center">
         <Col className="icon-wrapper" xs={3}>

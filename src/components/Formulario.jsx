@@ -31,6 +31,7 @@ const Formulario = ({ setError }) => {
   const passwordValidation = passwordPattern.test(password);
   const passwordEqualityValidation = password === confirmPassword;
   const emailValidation = emailPattern.test(email);
+
   function handleValidation(e) {
     e.preventDefault();
     const areInputValuesFilledIn = inputValues.some((item) => item === "");
@@ -64,6 +65,7 @@ const Formulario = ({ setError }) => {
     }
   }
   return (
+    /* comentario hecho por Alfredo (area de imput)*/
     <Form onSubmit={handleValidation}>
       <Form.Group className="mb-3 my-3" controlId="formName">
         <Form.Control
@@ -148,6 +150,7 @@ const Formulario = ({ setError }) => {
         </Button>
       </Form.Group>
     </Form>
+    /* comentario hecho por Alfredo (cierre area de imput)*/
   );
 };
 
